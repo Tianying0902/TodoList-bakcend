@@ -1,5 +1,9 @@
 import express from "express";
-import getTodos from "../Controller/index";
+import {
+  getTodos,
+  getActiveTodos,
+  getCompletedTodos,
+} from "../Controller/index";
 const router = express.Router();
 
 // app.get("/active", getRequestWithActive());
@@ -13,8 +17,8 @@ const router = express.Router();
 
 // app.put("/:id", putRequest());
 router.get("/", getTodos());
-// router.get("/active", get());
-// router.get("/completed", getRequestWithCompleted());
+router.get("/active", getActiveTodos());
+router.get("/completed", getCompletedTodos());
 // router.post("/add-todo", addTodo);
 
 // router.put("/edit-todo/:id", updateTodo);
