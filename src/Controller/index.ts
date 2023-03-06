@@ -48,4 +48,26 @@ async function getCompletedData(res: Response) {
     res.status(404).send(err);
   }
 }
-export { getTodos, getActiveTodos, getCompletedTodos };
+const addTodo = () => {
+  return (req: Request, res: Response) => {
+    postData(req, res);
+  };
+};
+async function postData(req: Request, res: Response) {
+  const taskName = req.body.task;
+  const taskDefault = false;
+  const insertNewTask =
+    "INSERT into todo(task, completed) VALUES ('" +
+    taskName +
+    "'," +
+    taskDefault +
+    ")";
+  try {
+    const result = await queryPromise(insertNewTask, mySqlConnection);
+    res.status(201).send(result);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send(err);
+  }
+}
+export { getTodos, getActiveTodos, getCompletedTodos, addTodo };

@@ -19,7 +19,7 @@ const router = express.Router();
 router.get("/", getTodos());
 router.get("/active", getActiveTodos());
 router.get("/completed", getCompletedTodos());
-// router.post("/add-todo", addTodo);
+router.post("/", addTodo());
 
 // router.put("/edit-todo/:id", updateTodo);
 
