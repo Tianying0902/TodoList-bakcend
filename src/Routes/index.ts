@@ -1,10 +1,14 @@
 import express from "express";
+import bodyParser from "body-parser";
 import {
   getTodos,
   getActiveTodos,
   getCompletedTodos,
+  addTodo,
 } from "../Controller/index";
 const router = express.Router();
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 // app.get("/active", getRequestWithActive());
 // app.get("/completed", getRequestWithCompleted());
