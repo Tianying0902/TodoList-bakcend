@@ -1,0 +1,22 @@
+{
+  "name": "todolist-backcend",
+  "version": "1.0.0",
+  "description": "typescript and express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tianying0902/TodoList-bakcend.git"
+  },
+  "author": "Tianying0902 <tianying0902@gmail.com>",
+  "license": "UNLICENSE",
+  "bugs": {
+    "url": "https://github.com/Tianying0902/TodoList-bakcend/issues"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "typescript": "^4.9.5"
+  }
+}
