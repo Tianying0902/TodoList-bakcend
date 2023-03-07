@@ -4,31 +4,24 @@ import {
   getTodos,
   getActiveTodos,
   getCompletedTodos,
+  getTodoWithId,
   addTodo,
   deleteTodo,
   deleteCompletedTodo,
+  editTodo,
 } from "../Controller/index";
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-// app.get("/active", getRequestWithActive());
-// app.get("/completed", getRequestWithCompleted());
-
-// app.get("/:id", getRequestWithId());
-// app.post("/", postRequest());
-
 router.delete("/:id", deleteTodo());
 router.delete("/", deleteCompletedTodo());
 
-// app.put("/:id", putRequest());
 router.get("/", getTodos());
 router.get("/active", getActiveTodos());
 router.get("/completed", getCompletedTodos());
+router.get("/:id", getTodoWithId());
 router.post("/", addTodo());
-
-// router.put("/edit-todo/:id", updateTodo);
-
-// router.delete("/delete-todo/:id", deleteTodo);
+router.put("/:id", editTodo());
 
 export default router;

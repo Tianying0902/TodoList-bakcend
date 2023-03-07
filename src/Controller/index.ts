@@ -115,11 +115,49 @@ async function deleteCompletedData(res: Response) {
     res.status(404).send(err);
   }
 }
+
+const editTodo = () => {
+  return (req: Request, res: Response) => {
+    if (req.body.completed === 0 || req.body.completed === 1) {
+      markData(req, res);
+    } else {
+      editData(req, res);
+    }
+  };
+};
+async function markData(req: Request, res: Response) {
+  let condition = req.params.id;
+  let status = req.body.completed;
+  const updateTaskStatus =
+    "UPDATE todo SET completed = " + status + " where id = " + condition + " ";
+  try {
+    const result = await queryPromise(updateTaskStatus, mySqlConnection);
+    res.status(204).send(result);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send(err);
+  }
+}
+async function editData(req: Request, res: Response) {
+  let condition = req.params.id;
+  let content = req.body.task;
+  const updateTaskContent =
+    "UPDATE todo SET task = '" + content + "' where id = " + condition + " ";
+  try {
+    const result = await queryPromise(updateTaskContent, mySqlConnection);
+    res.status(205).send(result);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send(err);
+  }
+}
 export {
   getTodos,
   getActiveTodos,
   getCompletedTodos,
+  getTodoWithId,
   addTodo,
   deleteTodo,
   deleteCompletedTodo,
+  editTodo,
 };
