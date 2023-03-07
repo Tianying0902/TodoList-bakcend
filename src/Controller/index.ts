@@ -22,7 +22,7 @@ const getTodoWithId = () => {
   };
 };
 
-const getActiveTodos = () => {
+const getActiveTodos= () => {
   return (_req: Request, res: Response) => {
     getActiveData(res);
   };

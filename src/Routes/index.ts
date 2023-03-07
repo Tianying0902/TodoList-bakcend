@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import bodyParser from "body-parser";
 import {
   getTodos,
@@ -10,7 +10,7 @@ import {
   deleteCompletedTodo,
   editTodo,
 } from "../Controller/index";
-const router = express.Router();
+const router: Router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
