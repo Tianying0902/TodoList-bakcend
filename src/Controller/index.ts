@@ -8,8 +8,6 @@ const getTodos = () => {
 };
 async function getData(res: Response) {
   const selectAllTasks = "SELECT * from todo";
-  //queryPromise -> async await
-  //get data->send->catch
   try {
     const result = await queryPromise(selectAllTasks, mySqlConnection);
     res.status(200).send(result);
