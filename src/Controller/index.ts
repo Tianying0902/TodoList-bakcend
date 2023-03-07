@@ -86,4 +86,26 @@ async function deleteData(req: Request, res: Response) {
     res.status(500).send(err);
   }
 }
-export { getTodos, getActiveTodos, getCompletedTodos, addTodo, deleteTodo };
+const deleteCompletedTodo = () => {
+  return (_req: Request, res: Response) => {
+    deleteCompletedData(res);
+  };
+};
+async function deleteCompletedData(res: Response) {
+  const deleteCompletedTasks = "DELETE from todo where completed = 1";
+  try {
+    const result = await queryPromise(deleteCompletedTasks, mySqlConnection);
+    res.status(200).send(result);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send(err);
+  }
+}
+export {
+  getTodos,
+  getActiveTodos,
+  getCompletedTodos,
+  addTodo,
+  deleteTodo,
+  deleteCompletedTodo,
+};
