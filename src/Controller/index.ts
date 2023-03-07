@@ -16,6 +16,22 @@ async function getData(res: Response) {
     res.status(404).send(err);
   }
 }
+const getTodoWithId = () => {
+  return (req: Request, res: Response) => {
+    getCertainData(req, res);
+  };
+};
+async function getCertainData(req: Request, res: Response) {
+  let condition = req.params.id;
+  const selectCertainTask = "SELECT * from todo where id = " + condition + "";
+  try {
+    const result = await queryPromise(selectCertainTask, mySqlConnection);
+    res.status(200).send(result);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send(err);
+  }
+}
 const getActiveTodos = () => {
   return (_req: Request, res: Response) => {
     getActiveData(res);
