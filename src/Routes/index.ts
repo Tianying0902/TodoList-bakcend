@@ -5,6 +5,7 @@ import {
   getActiveTodos,
   getCompletedTodos,
   addTodo,
+  deleteTodo,
 } from "../Controller/index";
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -16,7 +17,7 @@ router.use(bodyParser.json());
 // app.get("/:id", getRequestWithId());
 // app.post("/", postRequest());
 
-// app.delete("/:id", deleteRequestWithId());
+router.delete("/:id", deleteTodo());
 // app.delete("/", deleteRequest());
 
 // app.put("/:id", putRequest());

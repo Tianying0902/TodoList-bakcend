@@ -70,4 +70,20 @@ async function postData(req: Request, res: Response) {
     res.status(404).send(err);
   }
 }
-export { getTodos, getActiveTodos, getCompletedTodos, addTodo };
+const deleteTodo = () => {
+  return (req: Request, res: Response) => {
+    deleteData(req, res);
+  };
+};
+async function deleteData(req: Request, res: Response) {
+  let id = req.params.id;
+  const deleteTask = "DELETE from todo where id = " + id + "";
+  try {
+    const result = await queryPromise(deleteTask, mySqlConnection);
+    res.status(200).send(result);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+}
+export { getTodos, getActiveTodos, getCompletedTodos, addTodo, deleteTodo };
